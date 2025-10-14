@@ -88,7 +88,7 @@ const AdminDashboard = () => {
             <Shield className="w-8 h-8 text-green-500" />
             <div>
               <h1 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                Mine<span className="text-green-500">Guard</span>
+                Mine<span className="text-green-500">Sentinel</span>
               </h1>
               <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Admin Dashboard</p>
             </div>

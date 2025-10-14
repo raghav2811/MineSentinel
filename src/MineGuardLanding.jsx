@@ -144,7 +144,7 @@ const HeroSection = ({ darkMode, particles, scrollYProgress, atBottom, onGetStar
         >
           <Shield className={`w-20 h-20 mx-auto mb-6 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`} />
           <h1 className={`text-5xl md:text-7xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            Mine<span className="text-orange-500">Guard</span>
+            Mine<span className="text-orange-500">Sentinel</span>
           </h1>
           <p className={`text-2xl md:text-3xl mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'} font-light`}>
             Protecting Coal Miners in the Depths
@@ -430,7 +430,7 @@ const ProblemVisionSection = ({ darkMode }) => {
               <Shield className="w-12 h-12 text-green-400" />
             </div>
             <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              MineGuard AI System ✅
+              Mine Sentinel AI System ✅
             </h3>
             <ul className={`space-y-3 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
               <li>⚡ 30-second automated verification</li>
@@ -652,7 +652,7 @@ const Footer = ({ darkMode, setAtBottom }) => {
 
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-orange-500">MineGuard</h3>
+            <h3 className="text-2xl font-bold mb-4 text-orange-500">Mine Sentinel</h3>
             <p className="text-gray-400">AI-powered PPE compliance monitoring for safer mining operations.</p>
           </div>
 
@@ -677,7 +677,7 @@ const Footer = ({ darkMode, setAtBottom }) => {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center">
-          <p className="text-gray-500 text-sm">© 2025 MineGuard. Built with ❤️ for safer mining operations.</p>
+          <p className="text-gray-500 text-sm">© 2025 Mine Sentinel. Built with ❤️ for safer mining operations.</p>
           <p className="text-gray-600 text-xs mt-2">Developed by Team [Your Team Name] | All rights reserved</p>
         </div>
       </div>

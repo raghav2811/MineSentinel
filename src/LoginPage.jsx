@@ -88,7 +88,7 @@ const LoginPage = ({ onBack }) => {
               <Shield className="w-16 h-16 mx-auto mb-4 text-orange-500" />
             </motion.div>
             <h1 className="text-3xl font-bold text-white mb-2">
-              Mine<span className="text-orange-500">Guard</span>
+              Mine<span className="text-orange-500">Sentinel</span>
             </h1>
             <p className="text-gray-400">Secure Access Portal</p>
           </div>
@@ -231,7 +231,7 @@ const LoginPage = ({ onBack }) => {
 
         {/* Footer */}
         <p className="text-center text-gray-500 text-sm mt-6">
-          MineGuard © 2025 | Smart India Hackathon
+          Mine Sentinel © 2025 | Smart India Hackathon
         </p>
       </motion.div>
     </div>
