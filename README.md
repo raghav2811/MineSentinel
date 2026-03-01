@@ -47,9 +47,6 @@ The application now includes a **complete authentication system** with role-base
 - **Persistent login** via localStorage
 - **Dark/Light mode** throughout the app
 
-📖 See [LOGIN_GUIDE.md](./LOGIN_GUIDE.md) for detailed documentation.  
-📖 See [WEARABLES_GUIDE.md](./WEARABLES_GUIDE.md) for PPE monitoring details.
-
 ## Notes
 
 - The demo dataset is stored in localStorage under the key `mineguard_demo`.
