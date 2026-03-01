@@ -1,4 +1,4 @@
-# MineGuard Landing (MVP)
+# MineSentinel
 
 Local development scaffolded with Vite + React + Tailwind.
 
