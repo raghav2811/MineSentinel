@@ -263,19 +263,19 @@ const MinerSilhouette = ({ darkMode, atBottom }) => (
 const CoalMineBackground = ({ darkMode }) => {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Mine Tunnel Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: darkMode 
-            ? 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(100,100,100,0.3) 50px, rgba(100,100,100,0.3) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(100,100,100,0.3) 50px, rgba(100,100,100,0.3) 51px)'
-            : 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(50,50,50,0.2) 50px, rgba(50,50,50,0.2) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(50,50,50,0.2) 50px, rgba(50,50,50,0.2) 51px)'
-        }}
-      />
+      {/* Mine Tunnel Grid Pattern - Light Mode Only */}
+      {!darkMode && (
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(50,50,50,0.2) 50px, rgba(50,50,50,0.2) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(50,50,50,0.2) 50px, rgba(50,50,50,0.2) 51px)'
+          }}
+        />
+      )}
 
       {/* Rock Formations - Top */}
       <motion.div
-        className={`absolute -top-20 left-0 right-0 h-40 ${darkMode ? 'bg-gradient-to-b from-stone-800 to-transparent' : 'bg-gradient-to-b from-stone-600 to-transparent'}`}
+        className={`absolute -top-20 left-0 right-0 h-40 pointer-events-none ${darkMode ? 'bg-gradient-to-b from-stone-700/80 to-transparent' : 'bg-gradient-to-b from-stone-600 to-transparent'}`}
         style={{
           clipPath: 'polygon(0 0, 100% 0, 100% 60%, 85% 80%, 70% 60%, 50% 85%, 30% 65%, 15% 75%, 0 50%)',
         }}
@@ -285,7 +285,7 @@ const CoalMineBackground = ({ darkMode }) => {
 
       {/* Rock Formations - Bottom */}
       <motion.div
-        className={`absolute -bottom-20 left-0 right-0 h-40 ${darkMode ? 'bg-gradient-to-t from-stone-900 to-transparent' : 'bg-gradient-to-t from-stone-700 to-transparent'}`}
+        className={`absolute -bottom-20 left-0 right-0 h-40 pointer-events-none ${darkMode ? 'bg-gradient-to-t from-stone-800/80 to-transparent' : 'bg-gradient-to-t from-stone-700 to-transparent'}`}
         style={{
           clipPath: 'polygon(0 100%, 15% 40%, 30% 55%, 50% 35%, 70% 50%, 85% 30%, 100% 45%, 100% 100%)',
         }}
@@ -294,33 +294,33 @@ const CoalMineBackground = ({ darkMode }) => {
       />
 
       {/* Mining Lamps - Left */}
-      <motion.div className="absolute top-1/4 left-10">
-        <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-orange-500' : 'bg-orange-600'} shadow-lg`} />
+      <motion.div className="absolute top-1/4 left-10 pointer-events-none">
+        <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-orange-400' : 'bg-orange-600'} shadow-lg`} />
         <motion.div
-          className={`absolute top-0 left-0 w-3 h-3 rounded-full ${darkMode ? 'bg-orange-400' : 'bg-orange-500'}`}
+          className={`absolute top-0 left-0 w-3 h-3 rounded-full ${darkMode ? 'bg-orange-300' : 'bg-orange-500'}`}
           animate={{ scale: [1, 2.5, 1], opacity: [0.6, 0, 0.6] }}
           transition={{ duration: 3, repeat: Infinity }}
         />
-        <div className={`absolute top-0 left-3 w-32 h-32 ${darkMode ? 'bg-orange-500/10' : 'bg-orange-600/20'} blur-3xl`} />
+        <div className={`absolute top-0 left-3 w-32 h-32 ${darkMode ? 'bg-orange-500/25' : 'bg-orange-600/20'} blur-3xl`} />
       </motion.div>
 
       {/* Mining Lamps - Right */}
-      <motion.div className="absolute top-1/3 right-16">
-        <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-yellow-400' : 'bg-yellow-500'} shadow-lg`} />
+      <motion.div className="absolute top-1/3 right-16 pointer-events-none">
+        <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-yellow-300' : 'bg-yellow-500'} shadow-lg`} />
         <motion.div
-          className={`absolute top-0 left-0 w-3 h-3 rounded-full ${darkMode ? 'bg-yellow-300' : 'bg-yellow-400'}`}
+          className={`absolute top-0 left-0 w-3 h-3 rounded-full ${darkMode ? 'bg-yellow-200' : 'bg-yellow-400'}`}
           animate={{ scale: [1, 2.5, 1], opacity: [0.6, 0, 0.6] }}
           transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
         />
-        <div className={`absolute top-0 right-3 w-32 h-32 ${darkMode ? 'bg-yellow-500/10' : 'bg-yellow-600/20'} blur-3xl`} />
+        <div className={`absolute top-0 right-3 w-32 h-32 ${darkMode ? 'bg-yellow-500/25' : 'bg-yellow-600/20'} blur-3xl`} />
       </motion.div>
 
       {/* Coal Seams - Diagonal Stripes */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 pointer-events-none opacity-20">
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute h-2 ${darkMode ? 'bg-black' : 'bg-gray-800'}`}
+            className={`absolute h-3 ${darkMode ? 'bg-stone-600' : 'bg-gray-800'}`}
             style={{
               width: '150%',
               left: '-25%',
@@ -340,10 +340,10 @@ const CoalMineBackground = ({ darkMode }) => {
       </div>
 
       {/* Underground Ambient Glow */}
-      <div className={`absolute inset-0 ${darkMode ? 'bg-gradient-radial from-orange-900/5 via-transparent to-transparent' : 'bg-gradient-radial from-orange-700/10 via-transparent to-transparent'}`} />
+      <div className={`absolute inset-0 pointer-events-none ${darkMode ? 'bg-gradient-radial from-orange-800/15 via-transparent to-transparent' : 'bg-gradient-radial from-orange-700/10 via-transparent to-transparent'}`} />
       
       {/* Vignette Effect */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/60" />
+      <div className={`absolute inset-0 pointer-events-none ${darkMode ? 'bg-gradient-radial from-transparent via-transparent to-black/70' : 'bg-gradient-radial from-transparent via-transparent to-black/60'}`} />
     </div>
   );
 };
@@ -356,7 +356,20 @@ const ProblemVisionSection = ({ darkMode }) => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className={`py-24 px-6 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+    <section ref={ref} className={`py-24 px-6 relative ${darkMode ? 'bg-gray-800' : 'bg-gradient-to-b from-gray-100 via-stone-100 to-gray-200'}`}>
+      {/* Coal texture overlay */}
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: darkMode 
+          ? 'radial-gradient(circle at 20% 50%, transparent 0%, rgba(0,0,0,0.3) 100%), repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(100,100,100,0.1) 10px, rgba(100,100,100,0.1) 20px)'
+          : 'radial-gradient(circle at 20% 50%, transparent 0%, rgba(120,113,108,0.15) 100%), repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(120,113,108,0.1) 10px, rgba(120,113,108,0.1) 20px)'
+      }} />
+      
+      {/* Rock formation accents */}
+      <div className={`absolute top-0 left-0 right-0 h-32 ${darkMode ? 'bg-gradient-to-b from-stone-800/20' : 'bg-gradient-to-b from-stone-400/10'} to-transparent`} style={{
+        clipPath: 'polygon(0 0, 100% 0, 100% 80%, 85% 90%, 70% 75%, 50% 95%, 30% 80%, 15% 85%, 0 70%)',
+      }} />
+      
+      <div className="relative z-10">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
@@ -400,7 +413,8 @@ const ProblemVisionSection = ({ darkMode }) => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} border-2 border-red-500`}
+            whileHover={{ scale: 1.02 }}
+            className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} border-2 border-red-500 transition-all duration-300 cursor-pointer hover:shadow-[0_0_40px_rgba(239,68,68,0.5)]`}
           >
             <div className="flex items-center gap-3 mb-4">
               <AlertTriangle className="w-16 h-16 text-red-500" />
@@ -423,7 +437,8 @@ const ProblemVisionSection = ({ darkMode }) => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} border-2 border-green-500 shadow-lg shadow-green-500/20`}
+            whileHover={{ scale: 1.02 }}
+            className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} border-2 border-green-500 shadow-lg shadow-green-500/20 transition-all duration-300 cursor-pointer hover:shadow-[0_0_40px_rgba(16,185,129,0.6)]`}
           >
             <div className="flex items-center gap-3 mb-4">
               <CheckCircle className="w-16 h-16 text-green-500" />
@@ -442,6 +457,7 @@ const ProblemVisionSection = ({ darkMode }) => {
             </ul>
           </motion.div>
         </div>
+      </div>
       </div>
     </section>
   );
@@ -470,7 +486,36 @@ const TechnologySection = ({ darkMode }) => {
   };
 
   return (
-    <section ref={ref} className={`py-24 px-6 ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+    <section ref={ref} className={`py-24 px-6 relative ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-gray-200 via-slate-200 to-stone-200'}`}>
+      {/* Underground tunnel grid pattern */}
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: darkMode
+          ? 'repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(100,100,100,0.3) 60px, rgba(100,100,100,0.3) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(100,100,100,0.3) 60px, rgba(100,100,100,0.3) 61px)'
+          : 'repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(80,80,80,0.2) 60px, rgba(80,80,80,0.2) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(80,80,80,0.2) 60px, rgba(80,80,80,0.2) 61px)'
+      }} />
+      
+      {/* Coal seam stripes */}
+      <div className="absolute inset-0 overflow-hidden opacity-3">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute h-1 ${darkMode ? 'bg-black' : 'bg-stone-600'}`}
+            style={{
+              width: '120%',
+              left: '-10%',
+              top: `${15 + i * 15}%`,
+              transform: `rotate(-5deg)`,
+              opacity: 0.1
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Ambient glow spots */}
+      <div className={`absolute top-20 right-20 w-64 h-64 rounded-full ${darkMode ? 'bg-orange-500/5' : 'bg-orange-400/10'} blur-3xl`} />
+      <div className={`absolute bottom-20 left-20 w-64 h-64 rounded-full ${darkMode ? 'bg-green-500/5' : 'bg-green-400/10'} blur-3xl`} />
+      
+      <div className="relative z-10">
       <div className="max-w-7xl mx-auto">
         <motion.h2 initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className={`text-4xl md:text-5xl font-bold mb-16 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>
           Powered by <span className="text-orange-500">Cutting-Edge</span> Technology
@@ -478,13 +523,38 @@ const TechnologySection = ({ darkMode }) => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {technologies.map((tech, index) => (
-            <motion.div key={index} initial={{ opacity: 0, clipPath: 'circle(0% at 50% 50%)' }} animate={isInView ? { opacity: 1, clipPath: 'circle(100% at 50% 50%)' } : {}} transition={{ duration: 0.6, delay: index * 0.1 }} className={`p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border-2 ${colorMap[tech.color]} shadow-lg hover:scale-105 transition-transform`}>
-              <tech.icon className={`w-12 h-12 mb-4 text-${tech.color}-500`} />
+            <motion.div 
+              key={index} 
+              initial={{ opacity: 0, clipPath: 'circle(0% at 50% 50%)' }} 
+              animate={isInView ? { opacity: 1, clipPath: 'circle(100% at 50% 50%)' } : {}} 
+              transition={{ duration: 0.6, delay: index * 0.1 }} 
+              whileHover={{ scale: 1.05 }}
+              className={`p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border-2 ${colorMap[tech.color]} shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer`}
+              style={{
+                transition: 'all 0.3s ease-in-out'
+              }}
+              onMouseEnter={(e) => {
+                const colors = {
+                  orange: '0, 0, 40px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.4)',
+                  green: '0, 0, 40px rgba(16, 185, 129, 0.6), 0 0 60px rgba(16, 185, 129, 0.4)',
+                  blue: '0, 0, 40px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.4)',
+                  red: '0, 0, 40px rgba(239, 68, 68, 0.6), 0 0 60px rgba(239, 68, 68, 0.4)',
+                  purple: '0, 0, 40px rgba(168, 85, 247, 0.6), 0 0 60px rgba(168, 85, 247, 0.4)',
+                  cyan: '0, 0, 40px rgba(6, 182, 212, 0.6), 0 0 60px rgba(6, 182, 212, 0.4)'
+                };
+                e.currentTarget.style.boxShadow = colors[tech.color];
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '';
+              }}
+            >
+              <tech.icon className={`w-12 h-12 mb-4 text-${tech.color}-500 transition-transform group-hover:scale-110`} />
               <h3 className={`text-xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{tech.title}</h3>
               <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>{tech.description}</p>
             </motion.div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
@@ -504,7 +574,21 @@ const DashboardSection = ({ darkMode }) => {
   ];
 
   return (
-    <section ref={ref} className={`py-24 px-6 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+    <section ref={ref} className={`py-24 px-6 relative ${darkMode ? 'bg-gray-800' : 'bg-gradient-to-b from-stone-200 via-gray-100 to-slate-200'}`}>
+      {/* Rock texture overlay */}
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: darkMode
+          ? 'radial-gradient(circle at 80% 20%, transparent 0%, rgba(0,0,0,0.3) 100%)'
+          : 'radial-gradient(circle at 80% 20%, transparent 0%, rgba(100,100,100,0.1) 100%)',
+        backgroundSize: '200% 200%'
+      }} />
+      
+      {/* Mining equipment silhouettes */}
+      <div className={`absolute bottom-0 left-0 right-0 h-48 ${darkMode ? 'bg-gradient-to-t from-stone-900/20' : 'bg-gradient-to-t from-stone-400/10'} to-transparent`} style={{
+        clipPath: 'polygon(0 100%, 8% 40%, 15% 50%, 22% 35%, 30% 45%, 38% 30%, 45% 40%, 52% 25%, 60% 35%, 68% 30%, 75% 45%, 82% 35%, 90% 50%, 100% 40%, 100% 100%)',
+      }} />
+      
+      <div className="relative z-10">
       <div className="max-w-7xl mx-auto">
         <motion.h2 initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className={`text-4xl md:text-5xl font-bold mb-16 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>
           Real-Time Safety <span className="text-green-500">Dashboard</span>
@@ -538,17 +622,30 @@ const DashboardSection = ({ darkMode }) => {
           </div>
         </motion.div>
       </div>
+      </div>
     </section>
   );
 };
 
-const StatCard = ({ title, value, icon: Icon, color, darkMode }) => (
-  <motion.div whileHover={{ scale: 1.05 }} className={`p-4 rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border border-${color}-500/30`}>
-    <Icon className={`w-8 h-8 mb-2 text-${color}-500`} />
-    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{title}</p>
-    <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{value}</p>
-  </motion.div>
-);
+const StatCard = ({ title, value, icon: Icon, color, darkMode }) => {
+  const glowColors = {
+    green: 'hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]',
+    blue: 'hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]',
+    orange: 'hover:shadow-[0_0_30px_rgba(249,115,22,0.6)]',
+    purple: 'hover:shadow-[0_0_30px_rgba(168,85,247,0.6)]'
+  };
+
+  return (
+    <motion.div 
+      whileHover={{ scale: 1.05 }} 
+      className={`p-4 rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border border-${color}-500/30 transition-all duration-300 cursor-pointer ${glowColors[color]}`}
+    >
+      <Icon className={`w-8 h-8 mb-2 text-${color}-500`} />
+      <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{title}</p>
+      <p className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{value}</p>
+    </motion.div>
+  );
+};
 
 const ImpactSection = ({ darkMode }) => {
   const ref = useRef(null);
@@ -562,7 +659,52 @@ const ImpactSection = ({ darkMode }) => {
   ];
 
   return (
-    <section ref={ref} className={`py-24 px-6 ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+    <section ref={ref} className={`py-24 px-6 relative ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-slate-200 via-stone-100 to-gray-200'}`}>
+      {/* Coal dust particles effect */}
+      <div className="absolute inset-0 overflow-hidden opacity-10">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className={`absolute rounded-full ${darkMode ? 'bg-gray-600' : 'bg-stone-500'}`}
+            style={{
+              width: Math.random() * 4 + 2 + 'px',
+              height: Math.random() * 4 + 2 + 'px',
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Layered rock formations */}
+      <div className="absolute top-0 left-0 right-0 h-40 opacity-10">
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute left-0 right-0 h-8 ${darkMode ? 'bg-stone-800' : 'bg-stone-600'}`}
+            style={{
+              top: `${i * 12}%`,
+              transform: `skewY(-1deg)`,
+              opacity: 0.3 - i * 0.05
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Mining lamps glow effect */}
+      <div className={`absolute top-40 left-1/4 w-96 h-96 rounded-full ${darkMode ? 'bg-orange-500/5' : 'bg-orange-400/8'} blur-3xl`} />
+      <div className={`absolute bottom-40 right-1/4 w-96 h-96 rounded-full ${darkMode ? 'bg-yellow-500/5' : 'bg-yellow-400/8'} blur-3xl`} />
+      
+      <div className="relative z-10">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
@@ -585,6 +727,7 @@ const ImpactSection = ({ darkMode }) => {
             <ImpactCard key={index} {...impact} darkMode={darkMode} isInView={isInView} delay={index * 0.1} />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
@@ -612,8 +755,14 @@ const ImpactCard = ({ label, target, suffix, icon: Icon, description, darkMode, 
   }, [isInView, target]);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay }} className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} text-center border-2 border-green-500 shadow-lg shadow-green-500/20`}>
-      <Icon className="w-16 h-16 mx-auto mb-4 text-green-500" />
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }} 
+      animate={isInView ? { opacity: 1, y: 0 } : {}} 
+      transition={{ duration: 0.6, delay }}
+      whileHover={{ scale: 1.05 }}
+      className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} text-center border-2 border-green-500 shadow-lg shadow-green-500/20 transition-all duration-300 cursor-pointer hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] group`}
+    >
+      <Icon className="w-16 h-16 mx-auto mb-4 text-green-500 transition-transform group-hover:scale-110" />
       <div className={`text-5xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{count}{suffix}</div>
       <div className={`text-lg font-semibold mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{label}</div>
       <div className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>{description}</div>
@@ -642,7 +791,29 @@ const Footer = ({ darkMode, setAtBottom }) => {
   }, [setAtBottom]);
 
   return (
-    <footer ref={ref} className={`py-12 px-6 ${darkMode ? 'bg-gray-950' : 'bg-gray-900'} text-white`}>
+    <footer ref={ref} className={`py-12 px-6 relative ${darkMode ? 'bg-gray-950' : 'bg-gradient-to-b from-stone-800 via-gray-900 to-black'} text-white overflow-hidden`}>
+      {/* Underground depth gradient */}
+      <div className="absolute inset-0 opacity-20" style={{
+        backgroundImage: 'radial-gradient(ellipse at bottom, transparent 0%, rgba(0,0,0,0.5) 100%)',
+      }} />
+      
+      {/* Coal seam lines */}
+      <div className="absolute inset-0 opacity-10">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute h-px bg-stone-600"
+            style={{
+              left: 0,
+              right: 0,
+              top: `${20 + i * 20}%`,
+              transform: `rotate(-2deg)`,
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="relative z-10">
       <div className="max-w-7xl mx-auto">
         {showEasterEgg && (
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center mb-8">
@@ -680,6 +851,7 @@ const Footer = ({ darkMode, setAtBottom }) => {
           <p className="text-gray-500 text-sm">© 2025 Mine Sentinel. Built with ❤️ for safer mining operations.</p>
           <p className="text-gray-600 text-xs mt-2">Developed by Team [Your Team Name] | All rights reserved</p>
         </div>
+      </div>
       </div>
     </footer>
   );

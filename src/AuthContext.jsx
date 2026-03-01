@@ -180,7 +180,7 @@ const getDemoWorkers = () => {
         ]
       },
       wearables: {
-        helmet: { status: true, withLamp: true, batteryLevel: 18, lastCheck: '10:15 PM' },
+        helmet: { status: false, withLamp: true, batteryLevel: 9, lastCheck: '10:15 PM' },
         vest: { status: true, condition: 'Fair', reflectivity: 78 },
         spo2Monitor: { status: true, heartRate: 82, spo2Level: 97, lastReading: '11:00 PM' },
         rfidBadge: { status: true, badgeId: 'RFID-W002', lastScan: '10:12 PM', location: 'East Wing Entry' },
@@ -307,7 +307,7 @@ export const AuthProvider = ({ children }) => {
         },
         wearables: {
           helmet: { status: true, withLamp: true, batteryLevel: 85, lastCheck: '08:45 AM' },
-          vest: { status: true, condition: 'Good', reflectivity: 95 },
+          vest: { status: true, condition: 'Good', reflectivity: 75 },
           spo2Monitor: { status: true, heartRate: 78, spo2Level: 98, lastReading: '09:30 AM' },
           rfidBadge: { status: true, badgeId: 'RFID-W001', lastScan: '08:42 AM', location: 'Main Entrance' },
           facialRecognition: { status: true, verified: true, confidence: 98.5, timestamp: '08:42 AM' }
@@ -391,9 +391,13 @@ export const AuthProvider = ({ children }) => {
         creditPoints: worker.creditPoints.current,
         ppe: {
           helmet: worker.wearables.helmet.status,
+          helmetWarning: worker.wearables.helmet.status && worker.wearables.helmet.batteryLevel < 20,
           vest: worker.wearables.vest.status,
+          vestWarning: worker.wearables.vest.status && worker.wearables.vest.reflectivity < 80,
           boots: worker.wearables.spo2Monitor.status, // Using spo2 as boots equivalent
-          lamp: worker.wearables.helmet.withLamp
+          bootsWarning: false,
+          lamp: worker.wearables.helmet.withLamp,
+          lampWarning: worker.wearables.helmet.withLamp && worker.wearables.helmet.batteryLevel < 20
         },
         status: worker.creditPoints.current >= 90 ? 'active' : worker.creditPoints.current >= 70 ? 'warning' : 'alert',
         shift: worker.shift,
@@ -421,7 +425,7 @@ export const AuthProvider = ({ children }) => {
         },
         wearables: {
           helmet: { status: true, withLamp: true, batteryLevel: 85, lastCheck: '08:45 AM' },
-          vest: { status: true, condition: 'Good', reflectivity: 95 },
+          vest: { status: true, condition: 'Good', reflectivity: 75 },
           spo2Monitor: { status: true, heartRate: 78, spo2Level: 98, lastReading: '09:30 AM' },
           rfidBadge: { status: true, badgeId: 'RFID-W001', lastScan: '08:42 AM', location: 'Main Entrance' },
           facialRecognition: { status: true, verified: true, confidence: 98.5, timestamp: '08:42 AM' }
@@ -456,9 +460,13 @@ export const AuthProvider = ({ children }) => {
         creditPoints: worker1Data.creditPoints.current,
         ppe: {
           helmet: worker1Data.wearables.helmet.status,
+          helmetWarning: worker1Data.wearables.helmet.status && worker1Data.wearables.helmet.batteryLevel < 20,
           vest: worker1Data.wearables.vest.status,
+          vestWarning: worker1Data.wearables.vest.status && worker1Data.wearables.vest.reflectivity < 80,
           boots: worker1Data.wearables.spo2Monitor.status,
-          lamp: worker1Data.wearables.helmet.withLamp
+          bootsWarning: false,
+          lamp: worker1Data.wearables.helmet.withLamp,
+          lampWarning: worker1Data.wearables.helmet.withLamp && worker1Data.wearables.helmet.batteryLevel < 20
         },
         status: worker1Data.creditPoints.current >= 90 ? 'active' : worker1Data.creditPoints.current >= 70 ? 'warning' : 'alert',
         shift: worker1Data.shift,

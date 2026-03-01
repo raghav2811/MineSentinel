@@ -80,9 +80,93 @@ const AdminDashboard = () => {
   const COLORS = ['#10b981', '#f97316', '#3b82f6', '#8b5cf6', '#ec4899'];
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} transition-colors duration-500`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-gray-900 via-stone-900 to-black' : 'bg-gradient-to-br from-gray-100 via-stone-100 to-gray-200'} transition-colors duration-500 relative overflow-hidden`}>
+      {/* Coal Mine Background Effects */}
+      
+      {/* Mine Tunnel Grid Pattern - Light Mode Only */}
+      {!darkMode && (
+        <div 
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(50,50,50,0.2) 50px, rgba(50,50,50,0.2) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(50,50,50,0.2) 50px, rgba(50,50,50,0.2) 51px)'
+          }}
+        />
+      )}
+
+      {/* Rock Formations - Top */}
+      <motion.div
+        className={`absolute -top-20 left-0 right-0 h-40 pointer-events-none ${darkMode ? 'bg-gradient-to-b from-stone-700/80 to-transparent' : 'bg-gradient-to-b from-stone-600 to-transparent'}`}
+        style={{
+          clipPath: 'polygon(0 0, 100% 0, 100% 60%, 85% 80%, 70% 60%, 50% 85%, 30% 65%, 15% 75%, 0 50%)',
+        }}
+        animate={{ y: [0, -5, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Rock Formations - Bottom */}
+      <motion.div
+        className={`absolute -bottom-20 left-0 right-0 h-40 pointer-events-none ${darkMode ? 'bg-gradient-to-t from-stone-800/80 to-transparent' : 'bg-gradient-to-t from-stone-700 to-transparent'}`}
+        style={{
+          clipPath: 'polygon(0 100%, 15% 40%, 30% 55%, 50% 35%, 70% 50%, 85% 30%, 100% 45%, 100% 100%)',
+        }}
+        animate={{ y: [0, 5, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Mining Lamps - Left */}
+      <motion.div className="absolute top-1/4 left-10 pointer-events-none">
+        <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-orange-400' : 'bg-orange-600'} shadow-lg`} />
+        <motion.div
+          className={`absolute top-0 left-0 w-3 h-3 rounded-full ${darkMode ? 'bg-orange-300' : 'bg-orange-500'}`}
+          animate={{ scale: [1, 2.5, 1], opacity: [0.6, 0, 0.6] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        />
+        <div className={`absolute top-0 left-3 w-32 h-32 ${darkMode ? 'bg-orange-500/25' : 'bg-orange-600/20'} blur-3xl`} />
+      </motion.div>
+
+      {/* Mining Lamps - Right */}
+      <motion.div className="absolute top-1/3 right-16 pointer-events-none">
+        <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-yellow-300' : 'bg-yellow-500'} shadow-lg`} />
+        <motion.div
+          className={`absolute top-0 left-0 w-3 h-3 rounded-full ${darkMode ? 'bg-yellow-200' : 'bg-yellow-400'}`}
+          animate={{ scale: [1, 2.5, 1], opacity: [0.6, 0, 0.6] }}
+          transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+        />
+        <div className={`absolute top-0 right-3 w-32 h-32 ${darkMode ? 'bg-yellow-500/25' : 'bg-yellow-600/20'} blur-3xl`} />
+      </motion.div>
+
+      {/* Coal Seams - Diagonal Stripes */}
+      <div className={`absolute inset-0 pointer-events-none ${darkMode ? 'opacity-10' : 'opacity-5'}`}>
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className={`absolute h-2 ${darkMode ? 'bg-stone-700' : 'bg-gray-800'}`}
+            style={{
+              width: '150%',
+              left: '-25%',
+              top: `${i * 15}%`,
+              transform: `rotate(-15deg)`,
+            }}
+            animate={{
+              x: [0, 20, 0],
+            }}
+            transition={{
+              duration: 15 + i * 2,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Underground Ambient Glow */}
+      <div className={`absolute inset-0 pointer-events-none ${darkMode ? 'bg-gradient-radial from-orange-800/15 via-transparent to-transparent' : 'bg-gradient-radial from-orange-700/10 via-transparent to-transparent'}`} />
+      
+      {/* Vignette Effect */}
+      <div className={`absolute inset-0 pointer-events-none ${darkMode ? 'bg-gradient-radial from-transparent via-transparent to-black/70' : 'bg-gradient-radial from-transparent via-transparent to-black/60'}`} />
+
       {/* Header */}
-      <header className={`${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg border-b-2 border-green-500`}>
+      <header className={`${darkMode ? 'bg-gray-800/95 backdrop-blur-sm' : 'bg-white/95 backdrop-blur-sm'} shadow-lg border-b-2 border-green-500 relative z-10`}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Shield className="w-8 h-8 text-green-500" />
@@ -118,7 +202,7 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-6 py-8 relative z-10">
         {/* Stats Overview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
           <StatCard
@@ -257,7 +341,14 @@ const AdminDashboard = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className={`border-b ${darkMode ? 'border-gray-700 hover:bg-gray-700/50' : 'border-gray-200 hover:bg-gray-50'} transition-colors`}
+                    whileHover={{ scale: 1.01 }}
+                    className={`border-b ${darkMode ? 'border-gray-700 hover:bg-gray-700/50' : 'border-gray-200 hover:bg-gray-50'} transition-all duration-200 cursor-pointer ${
+                      worker.status === 'alert' 
+                        ? 'hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]' 
+                        : worker.status === 'warning' 
+                          ? 'hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]' 
+                          : 'hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]'
+                    }`}
                   >
                     <td className={`py-3 px-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'} font-mono`}>{worker.id}</td>
                     <td className={`py-3 px-4 ${darkMode ? 'text-white' : 'text-gray-900'} font-semibold`}>{worker.name}</td>
@@ -277,10 +368,10 @@ const AdminDashboard = () => {
                     </td>
                     <td className={`py-3 px-4`}>
                       <div className="flex gap-1">
-                        <PPEIndicator active={worker.ppe.helmet} label="H" darkMode={darkMode} />
-                        <PPEIndicator active={worker.ppe.vest} label="V" darkMode={darkMode} />
-                        <PPEIndicator active={worker.ppe.boots} label="B" darkMode={darkMode} />
-                        <PPEIndicator active={worker.ppe.lamp} label="L" darkMode={darkMode} />
+                        <PPEIndicator active={worker.ppe.helmet} label="H" darkMode={darkMode} warning={worker.ppe.helmetWarning} />
+                        <PPEIndicator active={worker.ppe.vest} label="V" darkMode={darkMode} warning={worker.ppe.vestWarning} />
+                        <PPEIndicator active={worker.ppe.boots} label="B" darkMode={darkMode} warning={worker.ppe.bootsWarning} />
+                        <PPEIndicator active={worker.ppe.lamp} label="L" darkMode={darkMode} warning={worker.ppe.lampWarning} />
                       </div>
                     </td>
                     <td className={`py-3 px-4`}>
@@ -349,10 +440,18 @@ const StatCard = ({ icon: Icon, label, value, color, darkMode }) => {
     purple: 'text-purple-500'
   };
 
+  const glowMap = {
+    blue: 'hover:shadow-[0_0_35px_rgba(59,130,246,0.6)]',
+    green: 'hover:shadow-[0_0_35px_rgba(16,185,129,0.6)]',
+    orange: 'hover:shadow-[0_0_35px_rgba(249,115,22,0.6)]',
+    red: 'hover:shadow-[0_0_35px_rgba(239,68,68,0.6)]',
+    purple: 'hover:shadow-[0_0_35px_rgba(168,85,247,0.6)]'
+  };
+
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-xl p-6 shadow-lg border-2 border-${color}-500/30`}
+      className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-xl p-6 shadow-lg border-2 border-${color}-500/30 transition-all duration-300 cursor-pointer ${glowMap[color]}`}
     >
       <Icon className={`w-10 h-10 mb-3 ${colorMap[color]}`} />
       <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-1`}>{label}</p>
@@ -361,16 +460,20 @@ const StatCard = ({ icon: Icon, label, value, color, darkMode }) => {
   );
 };
 
-const PPEIndicator = ({ active, label, darkMode }) => (
+const PPEIndicator = ({ active, label, darkMode, warning = false }) => (
   <div
     className={`w-6 h-6 rounded flex items-center justify-center text-xs font-bold ${
-      active
+      active && !warning
         ? 'bg-green-500 text-white'
+        : warning
+        ? darkMode 
+          ? 'bg-orange-500/30 text-orange-400 border border-orange-500' 
+          : 'bg-orange-100 text-orange-600 border border-orange-300'
         : darkMode
         ? 'bg-red-500/30 text-red-400 border border-red-500'
         : 'bg-red-100 text-red-600 border border-red-300'
     }`}
-    title={`${label}: ${active ? 'OK' : 'Missing'}`}
+    title={`${label}: ${active && !warning ? 'OK' : warning ? 'Warning' : 'Missing'}`}
   >
     {label}
   </div>
@@ -378,15 +481,30 @@ const PPEIndicator = ({ active, label, darkMode }) => (
 
 const StatusBadge = ({ status, darkMode }) => {
   const config = {
-    active: { bg: darkMode ? 'bg-green-500/20' : 'bg-green-100', text: 'text-green-500', label: 'Active' },
-    warning: { bg: darkMode ? 'bg-orange-500/20' : 'bg-orange-100', text: 'text-orange-500', label: 'Warning' },
-    alert: { bg: darkMode ? 'bg-red-500/20' : 'bg-red-100', text: 'text-red-500', label: 'Alert' }
+    active: { 
+      bg: darkMode ? 'bg-green-500/20' : 'bg-green-100', 
+      text: 'text-green-500', 
+      label: 'Active',
+      glow: 'hover:shadow-[0_0_15px_rgba(16,185,129,0.5)]'
+    },
+    warning: { 
+      bg: darkMode ? 'bg-orange-500/20' : 'bg-orange-100', 
+      text: 'text-orange-500', 
+      label: 'Warning',
+      glow: 'hover:shadow-[0_0_15px_rgba(249,115,22,0.6)]'
+    },
+    alert: { 
+      bg: darkMode ? 'bg-red-500/20' : 'bg-red-100', 
+      text: 'text-red-500', 
+      label: 'Alert',
+      glow: 'hover:shadow-[0_0_15px_rgba(239,68,68,0.7)]'
+    }
   };
 
   const style = config[status] || config.active;
 
   return (
-    <span className={`px-2 py-1 rounded text-xs font-semibold ${style.bg} ${style.text}`}>
+    <span className={`px-2 py-1 rounded text-xs font-semibold ${style.bg} ${style.text} transition-all duration-200 cursor-pointer ${style.glow}`}>
       {style.label}
     </span>
   );
@@ -396,7 +514,8 @@ const MetricCard = ({ icon: Icon, label, value, trend, darkMode }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-xl p-6 shadow-lg`}
+    whileHover={{ scale: 1.05 }}
+    className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-xl p-6 shadow-lg transition-all duration-300 cursor-pointer hover:shadow-[0_0_30px_rgba(249,115,22,0.5)]`}
   >
     <div className="flex items-start justify-between mb-3">
       <Icon className={`w-8 h-8 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`} />
@@ -476,7 +595,37 @@ const WorkerDetailModal = ({ worker, onClose, darkMode }) => (
           <p className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-900'} mb-4`}>PPE Wearables Status</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {/* Helmet */}
-            <div className={`p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
+            <motion.div 
+              className={`p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'}`}
+              animate={
+                !worker.wearables.helmet.status || worker.wearables.helmet.batteryLevel < 10
+                  ? {
+                      boxShadow: [
+                        '0 0 10px rgba(239, 68, 68, 0.4), 0 0 20px rgba(239, 68, 68, 0.2)',
+                        '0 0 20px rgba(239, 68, 68, 0.8), 0 0 35px rgba(239, 68, 68, 0.5)',
+                        '0 0 10px rgba(239, 68, 68, 0.4), 0 0 20px rgba(239, 68, 68, 0.2)',
+                      ],
+                    }
+                  : worker.wearables.helmet.batteryLevel < 20
+                  ? {
+                      boxShadow: [
+                        '0 0 10px rgba(249, 115, 22, 0.4), 0 0 20px rgba(249, 115, 22, 0.2)',
+                        '0 0 20px rgba(249, 115, 22, 0.8), 0 0 35px rgba(249, 115, 22, 0.5)',
+                        '0 0 10px rgba(249, 115, 22, 0.4), 0 0 20px rgba(249, 115, 22, 0.2)',
+                      ],
+                    }
+                  : {}
+              }
+              transition={
+                !worker.wearables.helmet.status || worker.wearables.helmet.batteryLevel < 20
+                  ? {
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }
+                  : {}
+              }
+            >
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle className={worker.wearables.helmet.status ? 'text-green-500' : 'text-red-500'} size={20} />
                 <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Helmet</span>
@@ -492,10 +641,40 @@ const WorkerDetailModal = ({ worker, onClose, darkMode }) => (
                   Last Check: {worker.wearables.helmet.lastCheck}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Vest */}
-            <div className={`p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
+            <motion.div 
+              className={`p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'}`}
+              animate={
+                !worker.wearables.vest.status
+                  ? {
+                      boxShadow: [
+                        '0 0 10px rgba(239, 68, 68, 0.4), 0 0 20px rgba(239, 68, 68, 0.2)',
+                        '0 0 20px rgba(239, 68, 68, 0.8), 0 0 35px rgba(239, 68, 68, 0.5)',
+                        '0 0 10px rgba(239, 68, 68, 0.4), 0 0 20px rgba(239, 68, 68, 0.2)',
+                      ],
+                    }
+                  : worker.wearables.vest.reflectivity < 80
+                  ? {
+                      boxShadow: [
+                        '0 0 10px rgba(249, 115, 22, 0.4), 0 0 20px rgba(249, 115, 22, 0.2)',
+                        '0 0 20px rgba(249, 115, 22, 0.8), 0 0 35px rgba(249, 115, 22, 0.5)',
+                        '0 0 10px rgba(249, 115, 22, 0.4), 0 0 20px rgba(249, 115, 22, 0.2)',
+                      ],
+                    }
+                  : {}
+              }
+              transition={
+                !worker.wearables.vest.status || worker.wearables.vest.reflectivity < 80
+                  ? {
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }
+                  : {}
+              }
+            >
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle className={worker.wearables.vest.status ? 'text-green-500' : 'text-red-500'} size={20} />
                 <span className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Safety Vest</span>
@@ -508,7 +687,7 @@ const WorkerDetailModal = ({ worker, onClose, darkMode }) => (
                   Reflectivity: <span className={worker.wearables.vest.reflectivity < 80 ? 'text-orange-500 font-bold' : ''}>{worker.wearables.vest.reflectivity}%</span>
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* SpO2 Monitor */}
             <div className={`p-3 rounded ${darkMode ? 'bg-gray-600' : 'bg-white'}`}>
@@ -635,3 +814,4 @@ const WorkerDetailModal = ({ worker, onClose, darkMode }) => (
 );
 
 export default AdminDashboard;
+
