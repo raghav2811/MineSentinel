@@ -64,3 +64,4 @@ The application now includes a **complete authentication system** with role-base
 ## Troubleshooting
 
 If Tailwind utilities don't appear, ensure `postcss` and `tailwindcss` are installed (they are included in devDependencies). If you change styles, restart Vite.
+"# MineSentinel" 
